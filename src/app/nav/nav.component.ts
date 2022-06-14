@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ModalService} from "../services/modal.service";
 
 @Component({
   selector: 'app-nav',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
 
-  constructor() { }
+  constructor(readonly modal: ModalService) { }
 
   ngOnInit(): void {
+  }
+
+  openModal($event: Event) {
+    // prevents switching pages.
+    $event.preventDefault();
+    this.modal.toggleModal('auth');
+    return;
   }
 
 }
