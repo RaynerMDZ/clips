@@ -1,0 +1,45 @@
+<form [formGroup]="registerForm">
+  <!-- Name -->
+  <div class="mb-3">
+    <label class="inline-block mb-2">Name</label>
+    <app-input [formControl]="this.name" [type]="'text'" [placeholder]="'Enter your name here.'"></app-input>
+  </div>
+
+
+  <!-- Email -->
+  <div class="mb-3">
+    <label class="inline-block mb-2">Email</label>
+    <app-input [formControl]="this.email" [type]="'email'" [placeholder]="'Enter your email here.'"></app-input>
+  </div>
+
+  <!-- Age -->
+  <div class="mb-3">
+    <label class="inline-block mb-2">Age</label>
+    <app-input [formControl]="this.age" [type]="'number'" [placeholder]="'Enter your age here.'"></app-input>
+  </div>
+
+  <!-- Password -->
+  <div class="mb-3">
+    <label class="inline-block mb-2">Password</label>
+    <app-input [formControl]="this.password" [type]="'password'" [placeholder]="'Enter your password here.'"></app-input>
+  </div>
+
+  <!-- Confirm Password -->
+  <div class="mb-3">
+    <label class="inline-block mb-2">Confirm Password</label>
+    <app-input [formControl]="this.confirm_password" [type]="'password'" [placeholder]="'Re-enter your age here.'"></app-input>
+  </div>
+
+  <!-- Phone Number -->
+  <div class="mb-3">
+    <label class="inline-block mb-2">Phone Number</label>
+    <app-input [formControl]="this.phoneNumber" [type]="'text'" [placeholder]="'Enter your phone number here.'"></app-input>
+  </div>
+
+  <button type="submit"
+          class="block w-full bg-indigo-400 text-white py-1.5 px-3 rounded transition
+                hover:bg-indigo-500">
+    Submit
+  </button>
+
+</form>

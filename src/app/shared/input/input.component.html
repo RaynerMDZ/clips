@@ -1,0 +1,19 @@
+<input [formControl]="formControl" [type]="type" [placeholder]="placeholder"
+       class="block w-full py-1.5 px-3 text-gray-200 border
+       border-gray-400 transition duration-500
+       focus:outline-none rounded bg-transparent focus:border-indigo-400" />
+
+<!--  Form Error handling  -->
+<ng-container *ngIf="formControl?.touched && formControl?.dirty">
+  <p *ngIf="formControl?.errors?.required" class="text-red-400">
+    Field is required.
+  </p>
+
+  <p *ngIf="formControl?.errors?.minlength" class="text-red-400">
+    Minimum length is {{ formControl?.errors?.minlength?.requiredLength }} characters.
+  </p>
+
+  <p *ngIf="formControl.errors?.email" class="text-red-400">
+    You must enter a valid email.
+  </p>
+</ng-container>
