@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -7,8 +7,22 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent{
-  formGroup: FormGroup = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl('')
+
+  email: FormControl = new FormControl('', [
+    Validators.required,
+    Validators.email
+  ]);
+
+  password: FormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  loginForm: FormGroup = new FormGroup({
+    email: this.email,
+    password: this.password,
   });
+
+  login() {
+    console.log("login called!")
+  }
 }

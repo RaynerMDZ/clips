@@ -1,44 +1,46 @@
-<form [formGroup]="registerForm">
+<app-alert *ngIf="showAlert" [color]="alertColor">
+  {{ alertMessage }}
+</app-alert>
+
+<form [formGroup]="registerForm" (ngSubmit)="register()">
   <!-- Name -->
   <div class="mb-3">
     <label class="inline-block mb-2">Name</label>
-    <app-input [formControl]="this.name" [type]="'text'" [placeholder]="'Enter your name here.'"></app-input>
+    <app-input [control]="this.name" [type]="'text'" [placeholder]="'Enter your name here.'" [name]="'name'"></app-input>
   </div>
-
 
   <!-- Email -->
   <div class="mb-3">
     <label class="inline-block mb-2">Email</label>
-    <app-input [formControl]="this.email" [type]="'email'" [placeholder]="'Enter your email here.'"></app-input>
+    <app-input [control]="this.email" [type]="'email'" [placeholder]="'Enter your email here.'" [name]="'email'"></app-input>
   </div>
 
   <!-- Age -->
   <div class="mb-3">
     <label class="inline-block mb-2">Age</label>
-    <app-input [formControl]="this.age" [type]="'number'" [placeholder]="'Enter your age here.'"></app-input>
+    <app-input [control]="this.age" [type]="'number'" [placeholder]="'Enter your age here.'" [name]="'age'"></app-input>
   </div>
 
   <!-- Password -->
   <div class="mb-3">
     <label class="inline-block mb-2">Password</label>
-    <app-input [formControl]="this.password" [type]="'password'" [placeholder]="'Enter your password here.'"></app-input>
+    <app-input [control]="this.password" [type]="'password'" [placeholder]="'Enter your password here.'" [name]="'password'"></app-input>
   </div>
 
   <!-- Confirm Password -->
   <div class="mb-3">
     <label class="inline-block mb-2">Confirm Password</label>
-    <app-input [formControl]="this.confirm_password" [type]="'password'" [placeholder]="'Re-enter your age here.'"></app-input>
+    <app-input [control]="this.confirm_password" [type]="'password'" [placeholder]="'Confirm password here.'" [name]="'confirmPassword'"></app-input>
   </div>
 
   <!-- Phone Number -->
   <div class="mb-3">
     <label class="inline-block mb-2">Phone Number</label>
-    <app-input [formControl]="this.phoneNumber" [type]="'text'" [placeholder]="'Enter your phone number here.'"></app-input>
+    <app-input [control]="phoneNumber" [type]="'text'" [placeholder]="'Enter your phone number here.'" [format]="'(000) 000 0000'" [name]="'phoneNumber'"></app-input>
   </div>
 
-  <button type="submit"
-          class="block w-full bg-indigo-400 text-white py-1.5 px-3 rounded transition
-                hover:bg-indigo-500">
+  <button type="submit" [disabled]="registerForm.invalid"
+          class="block w-full bg-indigo-400 text-white py-1.5 px-3 rounded transition hover:bg-indigo-500 disabled:opacity-50 disabled:bg-indigo-400">
     Submit
   </button>
 

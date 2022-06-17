@@ -9,13 +9,19 @@ import {FormControl} from "@angular/forms";
 export class InputComponent implements OnInit {
 
   @Input()
-  formControl: FormControl = new FormControl();
+  control: FormControl = new FormControl();
 
   @Input()
   type: string = 'text';
 
   @Input()
   placeholder: string = '';
+
+  @Input()
+  format: string = '';
+
+  @Input()
+  name: string = '';
 
   constructor() { }
 

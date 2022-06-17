@@ -1,19 +1,35 @@
-<input [formControl]="formControl" [type]="type" [placeholder]="placeholder"
+<!--DropSpecialCharacter prevents html from erasing the mask format. (000)-->
+<!--np i ngx-mask-->
+<input [formControl]="control" [type]="type" [placeholder]="placeholder" [mask]="format" [dropSpecialCharacters]="false" [name]="name"
        class="block w-full py-1.5 px-3 text-gray-200 border
        border-gray-400 transition duration-500
        focus:outline-none rounded bg-transparent focus:border-indigo-400" />
 
 <!--  Form Error handling  -->
-<ng-container *ngIf="formControl?.touched && formControl?.dirty">
-  <p *ngIf="formControl?.errors?.required" class="text-red-400">
+<ng-container *ngIf="control?.touched && control?.dirty">
+
+  <p *ngIf="control?.errors?.required" class="text-red-400">
     Field is required.
   </p>
 
-  <p *ngIf="formControl?.errors?.minlength" class="text-red-400">
-    Minimum length is {{ formControl?.errors?.minlength?.requiredLength }} characters.
+  <p *ngIf="control?.errors?.minlength" class="text-red-400">
+    Minimum length is {{ control?.errors?.minlength?.requiredLength }} characters.
   </p>
 
-  <p *ngIf="formControl.errors?.email" class="text-red-400">
+  <p *ngIf="control.errors?.email" class="text-red-400">
     You must enter a valid email.
   </p>
+
+  <p *ngIf="control.errors?.min" class="text-red-400">
+    Age must be at least 18.
+  </p>
+
+  <p *ngIf="control.errors?.max" class="text-red-400">
+    Age must be less than 120.
+  </p>
+
+  <p *ngIf="control.errors?.pattern" class="text-red-400">
+    Password must be at least 8 character long, have 1 uppercase letter, 1 lowercase letter, and 1 number. Special characters are allowed.
+  </p>
+
 </ng-container>

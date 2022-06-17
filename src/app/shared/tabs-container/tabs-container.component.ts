@@ -30,7 +30,7 @@ export class TabsContainerComponent implements OnInit, AfterContentInit {
     tab.active = true;
 
     // prevents the default behavior.
-    return false;
+    // return false;
   }
 
 }
