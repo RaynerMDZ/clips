@@ -6,23 +6,30 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent{
+export class LoginComponent {
 
-  email: FormControl = new FormControl('', [
-    Validators.required,
-    Validators.email
-  ]);
+  // email: FormControl = new FormControl('', [
+  //   Validators.required,
+  //   Validators.email
+  // ]);
+  //
+  // password: FormControl = new FormControl('', [
+  //   Validators.required,
+  // ]);
+  //
+  // loginForm: FormGroup = new FormGroup({
+  //   email: this.email,
+  //   password: this.password,
+  // });
 
-  password: FormControl = new FormControl('', [
-    Validators.required,
-  ]);
-
-  loginForm: FormGroup = new FormGroup({
-    email: this.email,
-    password: this.password,
-  });
+  credentials = {
+    email: '',
+    password: ''
+  }
 
   login() {
-    console.log("login called!")
+    console.log(this.credentials.email, this.credentials.password);
   }
+
+
 }
