@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ModalService} from "../services/modal.service";
+import { ModalService } from "../services/modal.service";
+import { AuthService } from "../services/auth.service";
+import { AngularFireAuth } from "@angular/fire/compat/auth";
 
 @Component({
   selector: 'app-nav',
@@ -8,7 +10,11 @@ import {ModalService} from "../services/modal.service";
 })
 export class NavComponent implements OnInit {
 
-  constructor(readonly modal: ModalService) { }
+  constructor(
+    readonly modal: ModalService,
+    readonly authService: AuthService,
+    readonly firebaseAuth: AngularFireAuth
+  ) {}
 
   ngOnInit(): void {
   }
@@ -20,4 +26,9 @@ export class NavComponent implements OnInit {
     return;
   }
 
+  async logout($event: MouseEvent) {
+    $event.preventDefault();
+    await this.firebaseAuth.signOut();
+    return;
+  }
 }

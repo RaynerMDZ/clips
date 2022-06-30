@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import {AuthService} from "../../services/auth.service";
 import IUser from "../../models/user.model";
+import {RegisterValidators} from "../validators/register-validators";
 
 @Component({
   selector: 'app-register',
@@ -32,11 +33,11 @@ export class RegisterComponent {
 
   password: FormControl = new FormControl('', [
     Validators.required,
-    Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm),
+    Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/)
   ]);
 
   confirm_password: FormControl = new FormControl('', [
-    Validators.required,
+    Validators.required
   ]);
 
   phoneNumber: FormControl = new FormControl('', [
@@ -52,7 +53,7 @@ export class RegisterComponent {
     password: this.password,
     confirm_password: this.confirm_password,
     phoneNumber: this.phoneNumber
-  });
+  }, [RegisterValidators.matchPassword]);
 
   showAlert: boolean = false;
   alertMessage: string = 'Please wait! your account is being created.';

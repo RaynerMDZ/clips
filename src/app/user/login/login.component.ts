@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {AngularFireAuth} from "@angular/fire/compat/auth";
 
 @Component({
   selector: 'app-login',
@@ -7,6 +8,8 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+
+  constructor(private readonly firebaseAuth: AngularFireAuth) { }
 
   // email: FormControl = new FormControl('', [
   //   Validators.required,
@@ -22,13 +25,35 @@ export class LoginComponent {
   //   password: this.password,
   // });
 
+  showAlert: boolean = false;
+  alertMessage: string = '';
+  alertColor: string = 'blue';
+  inSubmission: boolean = false;
+
   credentials = {
     email: '',
     password: ''
   }
 
-  login() {
-    console.log(this.credentials.email, this.credentials.password);
+  async login() {
+    this.showAlert = true;
+    this.alertMessage = 'Please wait! your account is being authenticated.';
+    this.alertColor = 'blue';
+    this.inSubmission = true;
+
+    try {
+      await this.firebaseAuth.signInWithEmailAndPassword(this.credentials.email as string, this.credentials.password as string);
+    } catch (error) {
+      console.log(error);
+      this.showAlert = true;
+      this.alertMessage = 'An unexpected error occurred. Please try again later';
+      this.alertColor = 'red';
+      this.inSubmission = false;
+      return;
+    }
+
+    this.alertMessage = `Welcome back ${this.credentials.email}`;
+    this.alertColor = 'green';
   }
 
 
